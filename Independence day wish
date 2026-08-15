@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+
+set -e
+
+# STAGE 1: Profile README.md
+cat << 'EOF' > README.md
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=FF9933&height=120&section=header&text=Happy%20Independence%20Day!%20🇮🇳&fontSize=30&fontColor=ffffff" width="100%" />
+
+  <p align="center">
+    <img src="https://img.shields.io/badge/VANDE-MATARAM-FF9933?style=for-the-badge&logoColor=white" alt="Saffron Badge" />
+    <img src="https://img.shields.io/badge/ASHOKA-CHAKRA-000080?style=for-the-badge&logoColor=white" alt="Navy Blue Badge" />
+    <img src="https://img.shields.io/badge/JAI-HIND-138808?style=for-the-badge&logoColor=white" alt="Green Badge" />
+  </p>
+
+  <h3>🇮🇳 Celebrating Freedom & Innovation 🇮🇳</h3>
+  <p>Wishing everyone a very Happy Independence Day!</p>
+</div>
+EOF
+
+# STAGE 2: Animated Ashoka Chakra SVG
+cat << 'EOF' > ashoka_chakra.svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <style>
+    .wheel {
+      transform-origin: 100px 100px;
+      animation: rotate-wheel 12s linear infinite;
+    }
+    @keyframes rotate-wheel {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#000080" stroke-width="6"/>
+  <circle cx="100" cy="100" r="82" fill="none" stroke="#000080" stroke-width="2"/>
+  <circle cx="100" cy="100" r="14" fill="#000080"/>
+
+  <g class="wheel" stroke="#000080" stroke-width="3">
+    <line x1="100" y1="100" x2="100" y2="18"/>
+    <line x1="100" y1="100" x2="121.2" y2="20.8"/>
+    <line x1="100" y1="100" x2="141" y2="29"/>
+    <line x1="100" y1="100" x2="158" y2="42"/>
+    <line x1="100" y1="100" x2="171" y2="59"/>
+    <line x1="100" y1="100" x2="179.2" y2="78.8"/>
+    <line x1="100" y1="100" x2="182" y2="100"/>
+    <line x1="100" y1="100" x2="179.2" y2="121.2"/>
+    <line x1="100" y1="100" x2="171" y2="141"/>
+    <line x1="100" y1="100" x2="158" y2="158"/>
+    <line x1="100" y1="100" x2="141" y2="171"/>
+    <line x1="100" y1="100" x2="121.2" y2="179.2"/>
+    <line x1="100" y1="100" x2="100" y2="182"/>
+    <line x1="100" y1="100" x2="78.8" y2="179.2"/>
+    <line x1="100" y1="100" x2="59" y2="171"/>
+    <line x1="100" y1="100" x2="42" y2="158"/>
+    <line x1="100" y1="100" x2="29" y2="141"/>
+    <line x1="100" y1="100" x2="20.8" y2="121.2"/>
+    <line x1="100" y1="100" x2="18" y2="100"/>
+    <line x1="100" y1="100" x2="20.8" y2="78.8"/>
+    <line x1="100" y1="100" x2="29" y2="59"/>
+    <line x1="100" y1="100" x2="42" y2="42"/>
+    <line x1="100" y1="100" x2="59" y2="29"/>
+    <line x1="100" y1="100" x2="78.8" y2="20.8"/>
+  </g>
+</svg>
+EOF
+
+# STAGE 3: GitHub Actions Workflow
+mkdir -p .github/workflows
+cat << 'EOF' > .github/workflows/independence_day.yml
+name: Independence Day Greeting
+
+on:
+  schedule:
+    - cron: '0 0 15 8 *'
+  workflow_dispatch:
+
+jobs:
+  celebrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Print Terminal Tricolor Banner
+        run: |
+          echo -e "\033[48;2;255;153;51m\033[38;2;255;255;255m                                                      \033[0m"
+          echo -e "\033[48;2;255;153;51m\033[38;2;255;255;255m             HAPPY INDEPENDENCE DAY 🇮🇳                \033[0m"
+          echo -e "\033[48;2;255;153;51m\033[38;2;255;255;255m                                                      \033[0m"
+          echo -e "\033[48;2;255;255;255m\033[38;2;0;0;128m                 ⚙️  JAI HIND  ⚙️                       \033[0m"
+          echo -e "\033[48;2;19;136;8m\033[38;2;255;255;255m                                                      \033[0m"
+          echo -e "\033[48;2;19;136;8m\033[38;2;255;255;255m             VANDE MATARAM - AUG 15                   \033[0m"
+          echo -e "\033[48;2;19;136;8m\033[38;2;255;255;255m                                                      \033[0m"
+EOF
+
+# STAGE 4: Git Commit Message Hook
+mkdir -p .git/hooks
+cat << 'EOF' > .git/hooks/prepare-commit-msg
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+CURRENT_DATE=$(date +%m-%d)
+
+if [ "$CURRENT_DATE" == "08-15" ]; then
+    EXISTING_MSG=$(cat "$COMMIT_MSG_FILE")
+    echo "🇮🇳 [Happy Independence Day] $EXISTING_MSG" > "$COMMIT_MSG_FILE"
+fi
+EOF
+chmod +x .git/hooks/prepare-commit-msg
+
+# STAGE 5: Terminal Flag Script
+cat << 'EOF' > flag.sh
+#!/usr/bin/env bash
+
+SAFFRON="\e[48;2;255;153;51m\e[38;2;255;255;255m"
+WHITE="\e[48;2;255;255;255m\e[38;2;0;0;128m"
+GREEN="\e[48;2;19;136;8m\e[38;2;255;255;255m"
+RESET="\e[0m"
+
+echo -e "${SAFFRON}                                                ${RESET}"
+echo -e "${SAFFRON}            HAPPY INDEPENDENCE DAY!             ${RESET}"
+echo -e "${SAFFRON}                                                ${RESET}"
+echo -e "${WHITE}                   ( ⚙️ )                       ${RESET}"
+echo -e "${WHITE}                  JAI HIND                      ${RESET}"
+echo -e "${GREEN}                                                ${RESET}"
+echo -e "${GREEN}               🇮🇳  🇮🇳  🇮🇳                        ${RESET}"
+echo -e "${GREEN}                                                ${RESET}"
+EOF
+chmod +x flag.sh
