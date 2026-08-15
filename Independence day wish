@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Independence Day Wish 🇮🇳</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #000;
+    color: white;
+}
+
+.stage {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    padding: 25px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.stage.active {
+    display: flex;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ---------------- STAGE 1 ---------------- */
+
+#stage1 {
+    background: linear-gradient(
+        to bottom,
+        #ff9933 0%,
+        #ff9933 33%,
+        white 33%,
+        white 66%,
+        #138808 66%,
+        #138808 100%
+    );
+}
+
+#stage1 h1 {
+    color: #111;
+    font-size: clamp(40px, 10vw, 80px);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+#stage1 p {
+    color: #111;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.flag {
+    font-size: 90px;
+    margin-bottom: 20px;
+    animation: wave 2s infinite ease-in-out;
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+/* ---------------- STAGE 2 ---------------- */
+
+#stage2 {
+    background: linear-gradient(135deg, #ff9933, white, #138808);
+}
+
+#stage2 h2 {
+    font-size: clamp(35px, 8vw, 65px);
+    color: #111;
+}
+
+#stage2 p {
+    color: #222;
+    font-size: 20px;
+    max-width: 650px;
+    margin-top: 20px;
+    line-height: 1.7;
+}
+
+.chakra {
+    font-size: 100px;
+    color: #000080;
+    animation: spin 5s linear infinite;
+    margin: 20px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------------- STAGE 3 ---------------- */
+
+#stage3 {
+    background: radial-gradient(circle, #222, #050505);
+}
+
+#stage3 h2 {
+    color: #ff9933;
+    font-size: clamp(32px, 8vw, 60px);
+}
+
+.message {
+    max-width: 700px;
+    font-size: 22px;
+    line-height: 1.8;
+    margin-top: 25px;
+}
+
+.highlight {
+    color: #138808;
+    font-weight: bold;
+}
+
+/* ---------------- STAGE 4 ---------------- */
+
+#stage4 {
+    background: #050505;
+    overflow: hidden;
+}
+
+#stage4 h2 {
+    color: white;
+    font-size: clamp(35px, 8vw, 65px);
+    z-index: 2;
+}
+
+.firework {
+    position: absolute;
+    font-size: 40px;
+    animation: explode 2s infinite;
+}
+
+.f1 {
+    top: 15%;
+    left: 15%;
+}
+
+.f2 {
+    top: 25%;
+    right: 15%;
+    animation-delay: 0.5s;
+}
+
+.f3 {
+    bottom: 20%;
+    left: 25%;
+    animation-delay: 1s;
+}
+
+.f4 {
+    bottom: 15%;
+    right: 25%;
+    animation-delay: 1.5s;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    30% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    60% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* ---------------- STAGE 5 ---------------- */
+
+#stage5 {
+    background: linear-gradient(135deg, #ff9933, #ffffff, #138808);
+    color: #111;
+}
+
+#stage5 h1 {
+    font-size: clamp(40px, 9vw, 75px);
+}
+
+#stage5 h2 {
+    font-size: clamp(30px, 7vw, 55px);
+    margin-top: 15px;
+    color: #000080;
+}
+
+.final-message {
+    max-width: 700px;
+    font-size: 22px;
+    line-height: 1.8;
+    margin-top: 25px;
+}
+
+.heart {
+    font-size: 55px;
+    margin-top: 20px;
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+/* ---------------- BUTTON ---------------- */
+
+.next-btn {
+    position: absolute;
+    bottom: 35px;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 30px;
+    background: #000;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.next-btn:hover {
+    transform: scale(1.08);
+    background: #222;
+}
+
+#stage5 .next-btn {
+    background: #138808;
+}
+
+/* Confetti */
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -20px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= STAGE 1 ================= -->
+
+<section class="stage active" id="stage1">
+
+    <div class="flag">🇮🇳</div>
+
+    <h1>Happy Independence Day!</h1>
+
+    <p>
+        A little surprise for someone special ❤️
+    </p>
+
+    <button class="next-btn" onclick="nextStage()">
+        Tap to Continue →
+    </button>
+
+</section>
+
+
+<!-- ================= STAGE 2 ================= -->
+
+<section class="stage" id="stage2">
+
+    <div class="chakra">☸</div>
+
+    <h2>Freedom • Unity • Pride</h2>
+
+    <p>
+        Today we celebrate the courage, sacrifices and dreams
+        that made our beautiful nation free. 🇮🇳
+    </p>
+
+    <button class="next-btn" onclick="nextStage()">
+        There's More → 
+    </button>
+
+</section>
+
+
+<!-- ================= STAGE 3 ================= -->
+
+<section class="stage" id="stage3">
+
+    <h2>For My Amazing Friend ❤️</h2>
+
+    <p class="message">
+
+        On this special Independence Day,
+        I wish you a life filled with
+        <span class="highlight">freedom, happiness, success</span>
+        and countless beautiful moments.
+
+        <br><br>
+
+        May you always have the courage to follow your dreams
+        and the strength to overcome every challenge.
+
+        <br><br>
+
+        Keep smiling and keep shining! ✨
+
+    </p>
+
+    <button class="next-btn" onclick="nextStage()">
+        One More Surprise → 
+    </button>
+
+</section>
+
+
+<!-- ================= STAGE 4 ================= -->
+
+<section class="stage" id="stage4">
+
+    <div class="firework f1">🎆</div>
+    <div class="firework f2">✨</div>
+    <div class="firework f3">🎇</div>
+    <div class="firework f4">✨</div>
+
+    <h2>Let Freedom Shine! 🇮🇳</h2>
+
+    <p style="margin-top:20px;font-size:22px;">
+        Celebrate the spirit of India.
+    </p>
+
+    <button class="next-btn" onclick="nextStage()">
+        Final Message ❤️
+    </button>
+
+</section>
+
+
+<!-- ================= STAGE 5 ================= -->
+
+<section class="stage" id="stage5">
+
+    <div class="flag">🇮🇳</div>
+
+    <h1>Happy Independence Day!</h1>
+
+    <!-- CHANGE YOUR FRIEND'S NAME HERE -->
+
+    <h2>Dear YOUR FRIEND'S NAME ❤️</h2>
+
+    <p class="final-message">
+
+        May your life always be as beautiful as our
+        tricolor flag.
+
+        <br><br>
+
+        May you achieve everything you dream of,
+        stay happy, stay strong and always keep that
+        wonderful smile.
+
+        <br><br>
+
+        <strong>Vande Mataram! 🇮🇳</strong>
+
+        <br><br>
+
+        With lots of wishes,<br>
+        <strong>YOUR NAME</strong>
+
+    </p>
+
+    <div class="heart">❤️</div>
+
+    <button class="next-btn" onclick="restart()">
+        ↻ Watch Again
+    </button>
+
+</section>
+
+
+<script>
+
+let currentStage = 1;
+
+function nextStage() {
+
+    document.getElementById("stage" + currentStage)
+        .classList.remove("active");
+
+    currentStage++;
+
+    if (currentStage > 5) {
+        currentStage = 5;
+    }
+
+    document.getElementById("stage" + currentStage)
+        .classList.add("active");
+
+    // Create confetti on Stage 4
+    if (currentStage === 4) {
+        createConfetti();
+    }
+
+    // Create more confetti on final stage
+    if (currentStage === 5) {
+        createConfetti();
+    }
+}
+
+
+function restart() {
+
+    document.getElementById("stage5")
+        .classList.remove("active");
+
+    currentStage = 1;
+
+    document.getElementById("stage1")
+        .classList.add("active");
+}
+
+
+// Confetti generator
+
+function createConfetti() {
+
+    for (let i = 0; i < 80; i++) {
+
+        const confetti = document.createElement("div");
+
+        confetti.classList.add("confetti");
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+        confetti.style.animationDuration =
+            (Math.random() * 3 + 2) + "s";
+
+        confetti.style.background =
+            ["#ff9933", "#ffffff", "#138808", "#000080"]
+            [Math.floor(Math.random() * 4)];
+
+        confetti.style.transform =
+            "rotate(" + Math.random() * 360 + "deg)";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
